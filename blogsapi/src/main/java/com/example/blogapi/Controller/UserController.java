@@ -10,15 +10,19 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import com.example.blogapi.dto.LoginDto;
+import com.example.blogapi.dto.UserDto;
 import com.example.blogapi.entities.UserEntities;
+import com.example.blogapi.errorhandeler.NotfoundMessage;
 import com.example.blogapi.services.authService;
 
 import jakarta.validation.Valid;
@@ -55,11 +59,17 @@ public class UserController {
 	
 //	Get All user Only can get by Admin
 	@GetMapping("/alluser")
-	public ResponseEntity<List<UserEntities>> getAlluser() 
+	public ResponseEntity<List<UserDto>> getAlluser() 
 	{
 		return ResponseEntity.status(HttpStatus.OK).body(auth.getAllUser());
 	}
 	
+//	get single user By id only by Admin		
+	
+	@GetMapping("/alluser/{id}")
+	public ResponseEntity<UserDto> getSingleUser(@PathVariable Integer id){
+		return ResponseEntity.status(HttpStatus.OK).body(auth.getSingleUser(id));
+	}
 	
 	
 }
