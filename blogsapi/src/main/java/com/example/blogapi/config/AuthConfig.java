@@ -19,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 public class AuthConfig {
 	
+//	Can change the Auth type and authuthoritys by hasAuthority
 	@Bean
 	public SecurityFilterChain secutiyChain(HttpSecurity http)throws Exception {
 			http.csrf(e->e.disable())
@@ -27,6 +28,8 @@ public class AuthConfig {
 			.permitAll()
 			.requestMatchers("/api/v1/auth/alluser")
 			.hasAuthority("ADMIN")
+			.requestMatchers("/api/v1/auth/userupdate/{id}")
+			.hasAuthority("Vendor")
 			.anyRequest()
 			.authenticated()			
 			

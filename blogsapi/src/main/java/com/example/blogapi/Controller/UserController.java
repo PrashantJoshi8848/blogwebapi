@@ -9,9 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,6 +73,15 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.OK).body(auth.getSingleUser(id));
 	}
 	
+	@PutMapping("/userupdate/{id}")
+	public ResponseEntity<String> updateUser(@PathVariable("id") Integer Id,@RequestBody UserEntities entity){
+		return ResponseEntity.status(HttpStatus.OK).body(auth.updateUser(Id, entity));
+	}
+	@DeleteMapping("/deleteuser/{id}")
+	public void updateUser(@PathVariable("id") Integer Id){
+		auth.DeleteUser(Id);
+		 ResponseEntity.status(HttpStatus.OK);
+	}
 	
 }
 
