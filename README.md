@@ -1,4 +1,8 @@
 # blogwebapi
+Postman collection 
+https://www.postman.com/cryosat-explorer-54529106/workspace/blogwebapicollection/request/21613844-af2890b5-9a65-418f-88c3-66a3e3c9f6a4
+collection name= blogwebApiCollection
+
 Register User api Route>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 > {{url}}/api/v1/auth/register
 
