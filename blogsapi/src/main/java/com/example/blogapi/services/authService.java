@@ -56,4 +56,20 @@ public class authService {
 		return userToDto(user);
 	}
 	
+//	update user By id
+	
+	public String updateUser(Integer Id,UserEntities user) {
+		userRepository.findById(Id).orElseThrow(()-> new NotfoundMessage("could't found this user id :", Id));
+		user.setId(Id);
+		user.setEmail(user.getEmail());
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		userRepository.save(user);
+		return "succfullyUpdated";
+	}
+	
+//	delete By Id User
+	public void DeleteUser(Integer id){
+		userRepository.deleteById(id);
+}
+	
 }
